@@ -67,7 +67,8 @@ class DoubleLinkedList:
         string = ''
         current_node = self.__head
         while current_node is not None:
-            string += '(' + str(current_node.prev) + '<-' + str(current_node) + '->' + str(current_node.next) + ')'
+            #string += '(' + str(current_node.prev) + '<-' + str(current_node) + '->' + str(current_node.next) + ')'
+            string += '(' + str(current_node) + ')'
             current_node = current_node.next
         return string
     
@@ -90,30 +91,22 @@ class Queue:
     
 
 class Reproductor:
-    def agregar():
-        print('xd')
+    def __init__(self):
+        self.playlist = Queue()
+        
+    def agregar_cancion(self, titulo: str, artista: str, duracion: int):
+        cancion = Cancion(titulo, artista, duracion)
+        self.playlist.enqueue(cancion)
 
-c1 = Cancion('Bohemian Rhapsody', 'Queen', 12)
-c2 = Cancion('Hotel California', 'Eagles', 11)
-c3 = Cancion('Smells Like Teen Spirit', 'Nirvana ', 14)
-c4 = Cancion('Soy Peor', 'Bad Bunny', 10)
+    def __repr__(self):
+        return str(self.playlist)
 
-q = Queue()
-print(q)
-q.enqueue(c1)
-print(q)
-q.enqueue(c2)
-print(q)
-q.enqueue(c3)
-print(q)
-q.enqueue(c4)
-print(q)
-print('-----------------')
-q.dequeue()
-print(q)
-q.dequeue()
-print(q)
-q.dequeue()
-print(q)
-q.dequeue()
-print(q)
+r = Reproductor()
+r.agregar_cancion('Bohemian Rhapsody', 'Queen', 12)
+print(r)
+r.agregar_cancion('Hotel California', 'Eagles', 11)
+print(r)
+r.agregar_cancion('Smells Like Teen Spirit', 'Nirvana ', 14)
+print(r)
+r.agregar_cancion('Soy Peor', 'Bad Bunny', 10)
+print(r)
