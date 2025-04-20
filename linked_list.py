@@ -62,6 +62,14 @@ class DoubleLinkedList:
 
     def return_firs(self):
         return self.__head.value
+    
+    def search(self, value: str):
+        current_node = self.__head
+        while current_node is not None:
+            if (current_node.value.titulo).lower() == value.lower():
+                return True
+            current_node = current_node.next
+        return False
 
     def __repr__(self):
         string = ''
@@ -86,6 +94,9 @@ class Queue:
     def first(self):
         return self.queue.return_firs()
     
+    def search(self, value):
+        return self.queue.search(value)
+    
     def __repr__(self):
         return str(self.queue)
     
@@ -95,8 +106,14 @@ class Reproductor:
         self.playlist = Queue()
         
     def agregar_cancion(self, titulo: str, artista: str, duracion: int):
-        cancion = Cancion(titulo, artista, duracion)
-        self.playlist.enqueue(cancion)
+        if self.playlist.search(titulo) == True:
+            return 'Cancion repetida'
+        else:
+            cancion = Cancion(titulo, artista, duracion)
+            self.playlist.enqueue(cancion)
+
+    def buscar(self, value):
+        return self.playlist.search(value)
 
     def __repr__(self):
         return str(self.playlist)
@@ -110,3 +127,7 @@ r.agregar_cancion('Smells Like Teen Spirit', 'Nirvana ', 14)
 print(r)
 r.agregar_cancion('Soy Peor', 'Bad Bunny', 10)
 print(r)
+r.agregar_cancion('Soy Peor', 'Bad Bunny', 10)
+print(r)
+
+#print(r.buscar('soy peor'))
