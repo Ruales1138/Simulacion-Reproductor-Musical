@@ -68,6 +68,8 @@ class DoubleLinkedList:
                 prev_node = current_node.prev
                 next_node = current_node.next
                 print(next_node.prev)
+                if current_node == self.__head:
+                    pass
                 if prev_node is not None:
                     prev_node.next = next_node
                 if next_node is not None:
