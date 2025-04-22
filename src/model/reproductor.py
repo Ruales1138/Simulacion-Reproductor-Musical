@@ -129,15 +129,14 @@ class Reproductor:
         
     def agregar_cancion(self, titulo: str, artista: str, duracion: int):
         if self.playlist.search(titulo) == True:
-            return 'Cancion repetida'
+            return '❌ Cancion repetida'
         else:
             cancion = Cancion(titulo, artista, duracion)
             self.playlist.enqueue(cancion)
+            return '✅ Canción agregada exitosamente. '
 
     def eliminar_cancion(self, titulo: str):
         return self.playlist.dequeue_by_name(titulo)
 
     def __repr__(self):
         return str(self.playlist)
-    
-

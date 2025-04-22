@@ -37,6 +37,14 @@ while opcion != 10:
     else:
         opcion = int(opcion)
         if opcion == 1:
+            print('')
+            print('➕ Agregar una Canción')
+            titulo = input('Ingrese el título: ')
+            artista = input('Ingrese el artista: ')
+            duracion = int(input('Ingrese la duración (10-15 seg): '))
+            resultado = r.agregar_cancion(titulo, artista, duracion)
+            print(resultado)
+        if opcion == 4:
             pass
         if opcion == 6:
             print('')
