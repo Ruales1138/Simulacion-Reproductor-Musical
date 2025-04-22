@@ -5,7 +5,8 @@ class Cancion:
         self.duracion: int = duracion
 
     def __repr__(self):
-        return f'🎧 {self.titulo} - {self.artista} ({self.duracion}s)'
+        #return f'🎧 {self.titulo} - {self.artista} ({self.duracion}s)'
+        return f'🎧 {self.artista}'
 
 
 class DoubleNode:
@@ -66,12 +67,15 @@ class DoubleLinkedList:
             if (current_node.value.titulo).lower() == value.lower():
                 prev_node = current_node.prev
                 next_node = current_node.next
-                print(prev_node.next)
-                prev_node.next = next_node
-                next_node.prev = prev_node
-                print(prev_node.next)
-                return True
+                print(next_node.prev)
+                if prev_node is not None:
+                    prev_node.next = next_node
+                if next_node is not None:
+                    next_node.prev = prev_node
+                print(next_node.prev)
+                return 'Cancion eliminada'
             current_node = current_node.next
+        self.__size -= 1
         return False
 
     def return_firs(self):
@@ -89,8 +93,8 @@ class DoubleLinkedList:
         string = ''
         current_node = self.__head
         while current_node is not None:
-            #string += '(' + str(current_node.prev) + '<-' + str(current_node) + '->' + str(current_node.next) + ')'
-            string += '(' + str(current_node) + ')'
+            string += '(' + str(current_node.prev) + '<-' + str(current_node) + '->' + str(current_node.next) + ')'
+            #string += '(' + str(current_node) + ')'
             current_node = current_node.next
         return string
     
@@ -150,5 +154,5 @@ print(r)
 
 
 
-# print(r.eliminar_cancion('soy peor'))
-# print(r)
+print(r.eliminar_cancion('Bohemian Rhapsody'))
+print(r)
