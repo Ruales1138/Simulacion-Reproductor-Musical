@@ -75,10 +75,10 @@ class DoubleLinkedList:
                     prev_node.next = next_node
                 if next_node is not None:
                     next_node.prev = prev_node
+                self.__size -= 1
                 return 'Cancion eliminada'
             current_node = current_node.next
-        self.__size -= 1
-        return False
+        return 'Cancion no encotrada'
 
     def return_firs(self):
         return self.__head.value
@@ -156,5 +156,5 @@ print(r)
 
 
 
-print(r.eliminar_cancion('Soy Peor'))
+print(r.eliminar_cancion('Soy peor'))
 print(r)
