@@ -5,8 +5,8 @@ class Cancion:
         self.duracion: int = duracion
 
     def __repr__(self):
-        #return f'🎧 {self.titulo} - {self.artista} ({self.duracion}s)'
-        return f'🎧 {self.artista}'
+        return f'🎧 {self.titulo} - {self.artista} ({self.duracion}s)'
+        #return f'🎧 {self.artista}'
 
 
 class DoubleNode:
@@ -91,12 +91,21 @@ class DoubleLinkedList:
             current_node = current_node.next
         return False
 
+    # def __repr__(self):
+    #     string = ''
+    #     current_node = self.__head
+    #     while current_node is not None:
+    #         string += '(' + str(current_node.prev) + '<-' + str(current_node) + '->' + str(current_node.next) + ')'
+    #         #string += '(' + str(current_node) + ')'
+    #         current_node = current_node.next
+    #     return string
+
     def __repr__(self):
         string = ''
         current_node = self.__head
         while current_node is not None:
-            string += '(' + str(current_node.prev) + '<-' + str(current_node) + '->' + str(current_node.next) + ')'
-            #string += '(' + str(current_node) + ')'
+            #string += '(' + str(current_node.prev) + '<-' + str(current_node) + '->' + str(current_node.next) + ')'
+            string += str(current_node) + '\n'
             current_node = current_node.next
         return string
     
@@ -144,15 +153,10 @@ class Reproductor:
 
 r = Reproductor()
 r.agregar_cancion('Bohemian Rhapsody', 'Queen', 12)
-print(r)
 r.agregar_cancion('Hotel California', 'Eagles', 11)
-print(r)
 r.agregar_cancion('Smells Like Teen Spirit', 'Nirvana ', 14)
-print(r)
 r.agregar_cancion('Soy Peor', 'Bad Bunny', 10)
-print(r)
 r.agregar_cancion('Soy Peor', 'Bad Bunny', 10)
-print(r)
 
 # print(r.eliminar_cancion('Bohemian Rhapsody'))
 # print(r)
@@ -188,4 +192,5 @@ while opcion != 10:
     else:
         opcion = int(opcion)
         if opcion == 6:
+            print('')
             print(r)
