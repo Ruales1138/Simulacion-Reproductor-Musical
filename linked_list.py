@@ -67,14 +67,14 @@ class DoubleLinkedList:
             if (current_node.value.titulo).lower() == value.lower():
                 prev_node = current_node.prev
                 next_node = current_node.next
-                print(next_node.prev)
                 if current_node == self.__head:
-                    pass
+                    self.__head = next_node
+                if current_node == self.__tail:
+                    self.__tail = prev_node
                 if prev_node is not None:
                     prev_node.next = next_node
                 if next_node is not None:
                     next_node.prev = prev_node
-                print(next_node.prev)
                 return 'Cancion eliminada'
             current_node = current_node.next
         self.__size -= 1
@@ -156,5 +156,5 @@ print(r)
 
 
 
-print(r.eliminar_cancion('Bohemian Rhapsody'))
+print(r.eliminar_cancion('Soy Peor'))
 print(r)
