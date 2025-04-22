@@ -6,7 +6,6 @@ class Cancion:
 
     def __repr__(self):
         return f'🎧 {self.titulo} - {self.artista} ({self.duracion}s)'
-        #return f'🎧 {self.artista}'
 
 
 class DoubleNode:
@@ -90,15 +89,6 @@ class DoubleLinkedList:
                 return True
             current_node = current_node.next
         return False
-
-    # def __repr__(self):
-    #     string = ''
-    #     current_node = self.__head
-    #     while current_node is not None:
-    #         string += '(' + str(current_node.prev) + '<-' + str(current_node) + '->' + str(current_node.next) + ')'
-    #         #string += '(' + str(current_node) + ')'
-    #         current_node = current_node.next
-    #     return string
 
     def __repr__(self):
         string = ''
@@ -191,6 +181,8 @@ while opcion != 10:
         opcion = 0
     else:
         opcion = int(opcion)
+        if opcion == 1:
+            pass
         if opcion == 6:
             print('')
             print(r)
