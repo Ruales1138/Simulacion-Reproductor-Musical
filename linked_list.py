@@ -60,6 +60,20 @@ class DoubleLinkedList:
             self.__tail = current_node
         self.__size -= 1
 
+    def delete_by_name(self, value: str):
+        current_node = self.__head
+        while current_node is not None:
+            if (current_node.value.titulo).lower() == value.lower():
+                prev_node = current_node.prev
+                next_node = current_node.next
+                print(prev_node.next)
+                prev_node.next = next_node
+                next_node.prev = prev_node
+                print(prev_node.next)
+                return True
+            current_node = current_node.next
+        return False
+
     def return_firs(self):
         return self.__head.value
     
@@ -91,6 +105,9 @@ class Queue:
     def dequeue(self):
         self.queue.delete_first()
 
+    def dequeue_by_name(self, value):
+        return self.queue.delete_by_name(value)
+
     def first(self):
         return self.queue.return_firs()
     
@@ -112,11 +129,12 @@ class Reproductor:
             cancion = Cancion(titulo, artista, duracion)
             self.playlist.enqueue(cancion)
 
-    def buscar(self, value):
-        return self.playlist.search(value)
+    def eliminar_cancion(self, titulo: str):
+        return self.playlist.dequeue_by_name(titulo)
 
     def __repr__(self):
         return str(self.playlist)
+    
 
 r = Reproductor()
 r.agregar_cancion('Bohemian Rhapsody', 'Queen', 12)
@@ -130,4 +148,7 @@ print(r)
 r.agregar_cancion('Soy Peor', 'Bad Bunny', 10)
 print(r)
 
-#print(r.buscar('soy peor'))
+
+
+# print(r.eliminar_cancion('soy peor'))
+# print(r)
