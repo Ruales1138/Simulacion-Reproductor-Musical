@@ -1,8 +1,8 @@
+import random
 import sys
 sys.path.append('src')
 from model.reproductor import Reproductor
 from model.barra import barra_progreso
-import time
 
 
 reproductor = Reproductor()
@@ -10,12 +10,10 @@ reproductor.agregar('Bohemian Rhapsody', 'Queen', 12)
 reproductor.agregar('Hotel California', 'Eagles', 11)
 reproductor.agregar('Smells Like Teen Spirit', 'Nirvana ', 14)
 reproductor.agregar('Soy Peor', 'Bad Bunny', 10)
-reproductor.agregar('Soy Peor', 'Bad Bunny', 10)
-
-# print(r.eliminar_cancion('Bohemian Rhapsody'))
-# print(r)
+reproductor.agregar('Dame tu cosita', 'El Chombo', 15)
 
 opcion = 0
+aleatorio = False
 
 while opcion != 10:
     print('--------------------------------------------')
@@ -68,7 +66,12 @@ while opcion != 10:
                 print(f'{cancion_actual}                   ')
                 #barra_progreso(100, cancion_actual.duracion)
                 barra_progreso(100, 2)
-                reproductor.avanzar()
+                if aleatorio is False:
+                    reproductor.avanzar()
+                else:
+                    numero = random.randint(1, 10)
+                    for i in range(numero):
+                        reproductor.avanzar()
                 print('')
                 respuesta = input('Enter para seguir reproduciendo o "s" para salir: ')
                 if respuesta == 's':
@@ -77,3 +80,17 @@ while opcion != 10:
         if opcion == 6:
             print('')
             print(reproductor)
+        if opcion == 7:
+            if aleatorio is False:
+                aleatorio = True
+                print('')
+                print('🔀 Modo aleatorio activado. ')
+            else:
+                aleatorio = False
+                print('')
+                print('🔀 Modo aleatorio desactivado. ')
+        if opcion == 8:
+            pass
+        if opcion == 9:
+            pass
+

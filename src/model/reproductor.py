@@ -178,6 +178,9 @@ class Reproductor:
         if self.cancion_actual is None:
             self.cancion_actual = self.playlist.first()
         return self.cancion_actual.value
+    
+    def orden_aleatorio(self):
+        pass
 
     def __repr__(self):
         return str(self.playlist)
