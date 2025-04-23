@@ -78,20 +78,20 @@ class DoubleLinkedList:
                 return True
             current_node = current_node.next
         return False
-
-    def return_firs(self):
-        return self.__head
-    
-    def return_last(self):
-        return self.__tail
     
     def search(self, value: str):
         current_node = self.__head
         while current_node is not None:
             if (current_node.value.titulo).lower() == value.lower():
-                return True
+                return current_node
             current_node = current_node.next
         return False
+    
+    def return_firs(self):
+        return self.__head
+    
+    def return_last(self):
+        return self.__tail
 
     def __repr__(self):
         string = ''
@@ -132,10 +132,11 @@ class Queue:
 class Reproductor:
     def __init__(self):
         self.playlist = Queue()
+        self.subplaylist = Queue()
         self.cancion_actual = None
         
     def agregar(self, titulo: str, artista: str, duracion: int):
-        if self.playlist.search(titulo) == True:
+        if self.playlist.search(titulo) is not False:
             return '🚫 Cancion repetida'
         else:
             cancion = Cancion(titulo, artista, duracion)
@@ -179,8 +180,22 @@ class Reproductor:
             self.cancion_actual = self.playlist.first()
         return self.cancion_actual.value
     
-    def orden_aleatorio(self):
-        pass
+    def crear_subplaylist(self, titulos):
+        lista_de_titulos = titulos.split(',')
+        contador = 0
+        for titulo in lista_de_titulos:
+            titulo = titulo.strip()
+            if self.playlist.search(titulo) is not False:
+                cancion = self.playlist.search(titulo)
+                nueva_cancion = Cancion(cancion.value.titulo, cancion.value.artista, cancion.value.duracion)
+                self.subplaylist.enqueue(nueva_cancion)
+                contador += 1
+        return f'✅ Subplaylist creada con {contador} canciones'
+    
+    def cambiar_playlist(self):
+        copia = self.playlist
+        self.playlist = self.subplaylist
+        self.subplaylist = copia
 
     def __repr__(self):
         return str(self.playlist)

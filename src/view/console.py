@@ -97,7 +97,14 @@ class Console:
                 if self.opcion == 8:
                     pass
                 if self.opcion == 9:
-                    pass
+                    print('')
+                    print('📑 Generar una Subplaylist')
+                    titulos = input('Ingrese los títulos de las canciones a incluir en la subplaylist (separados por comas): ')
+                    resultado = self.reproductor.crear_subplaylist(titulos)
+                    print(resultado)
+                    respuesta = input('1️⃣  Quiere reproducir esta nueva subplaylist? (si, no): ')
+                    if respuesta == 'si':
+                        self.reproductor.cambiar_playlist()
                 
 c = Console()
 c.imprimir()
