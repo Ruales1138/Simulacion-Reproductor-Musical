@@ -47,7 +47,12 @@ while opcion != 10:
             print(resultado)
         if opcion == 2:
             print('')
-            reproductor.avanzar()
+            resultado = reproductor.avanzar()
+            print(resultado)
+        if opcion == 3:
+            print('')
+            resultado = reproductor.retroceder()
+            print(resultado)
         if opcion == 4:
             print('')
             print('❌ Eliminar una Canción')
@@ -57,6 +62,7 @@ while opcion != 10:
         if opcion == 5:
             print('')
             cancion_actual = reproductor.reproducir()
+            print('🎵 Ahora reproduciendo:')
             print(cancion_actual)
             #barra_progreso(100, cancion_actual.duracion)
             barra_progreso(100, 1)

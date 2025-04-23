@@ -82,6 +82,9 @@ class DoubleLinkedList:
     def return_firs(self):
         return self.__head
     
+    def return_last(self):
+        return self.__tail
+    
     def search(self, value: str):
         current_node = self.__head
         while current_node is not None:
@@ -116,6 +119,9 @@ class Queue:
     def first(self):
         return self.__queue.return_firs()
     
+    def last(self):
+        return self.__queue.return_last()
+    
     def search(self, value):
         return self.__queue.search(value)
     
@@ -138,8 +144,28 @@ class Reproductor:
         
     def avanzar(self):
         if self.cancion_actual is not None:
-            print(self.cancion_actual.next)
             self.cancion_actual = self.cancion_actual.next
+            if self.cancion_actual is not None:
+                return f'Siguiente cancion: {self.cancion_actual}'
+            else:
+                self.cancion_actual = self.playlist.first()
+                return f'Siguiente cancion: {self.cancion_actual}'
+        else:
+            self.cancion_actual = self.playlist.first().next
+            return f'Siguiente cancion: {self.cancion_actual}'
+
+    def retroceder(self):
+        if self.cancion_actual is not None:
+            self.cancion_actual = self.cancion_actual.prev
+            if self.cancion_actual is not None:
+                return f'Anterior cancion: {self.cancion_actual}'
+            else:
+                self.cancion_actual = self.playlist.last()
+                return f'Anterior cancion: {self.cancion_actual}'
+        else:
+            self.cancion_actual = self.playlist.last()
+            return f'Anterior cancion: {self.cancion_actual}'
+        
 
     def eliminar(self, titulo: str):
         resultado = self.playlist.dequeue_by_name(titulo)
