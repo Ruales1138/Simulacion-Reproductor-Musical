@@ -34,3 +34,6 @@ def barra_progreso(total, tiempo_total):
 
 # Llamamos a la función con 100 pasos y duración total de 5 segundos
 # barra_progreso(100, 5)
+
+
+

@@ -2,6 +2,7 @@ import sys
 sys.path.append('src')
 from model.reproductor import Reproductor
 from model.barra import barra_progreso
+import time
 
 
 reproductor = Reproductor()
@@ -60,12 +61,18 @@ while opcion != 10:
             resultado = reproductor.eliminar(titulo)
             print(resultado)
         if opcion == 5:
-            print('')
-            cancion_actual = reproductor.reproducir()
-            print('🎵 Ahora reproduciendo:')
-            print(cancion_actual)
-            #barra_progreso(100, cancion_actual.duracion)
-            barra_progreso(100, 1)
+            while True:
+                print('')
+                cancion_actual = reproductor.reproducir()
+                print('🎵 Ahora reproduciendo:')
+                print(f'{cancion_actual}                   ')
+                #barra_progreso(100, cancion_actual.duracion)
+                barra_progreso(100, 2)
+                reproductor.avanzar()
+                respuesta = input('Enter: ')
+                if respuesta != '':
+                    break
+                print("\033[F\033[F\033[F\033[F\033[F", end="")
         if opcion == 6:
             print('')
             print(reproductor)
