@@ -128,15 +128,20 @@ class Reproductor:
         self.playlist = Queue()
         self.cancion_actual = None
         
-    def agregar_cancion(self, titulo: str, artista: str, duracion: int):
+    def agregar(self, titulo: str, artista: str, duracion: int):
         if self.playlist.search(titulo) == True:
             return '🚫 Cancion repetida'
         else:
             cancion = Cancion(titulo, artista, duracion)
             self.playlist.enqueue(cancion)
             return '✅ Canción agregada exitosamente. '
+        
+    def avanzar(self):
+        if self.cancion_actual is not None:
+            print(self.cancion_actual.next)
+            self.cancion_actual = self.cancion_actual.next
 
-    def eliminar_cancion(self, titulo: str):
+    def eliminar(self, titulo: str):
         resultado = self.playlist.dequeue_by_name(titulo)
         if resultado == True:
             return '✅ Canción eliminada exitosamente.'
@@ -144,7 +149,8 @@ class Reproductor:
             return '🚫 No se encontro la cancion'
         
     def reproducir(self):
-        self.cancion_actual = self.playlist.first()
+        if self.cancion_actual is None:
+            self.cancion_actual = self.playlist.first()
         return self.cancion_actual.value
 
     def __repr__(self):

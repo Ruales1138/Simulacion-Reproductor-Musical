@@ -1,15 +1,15 @@
 import sys
 sys.path.append('src')
 from model.reproductor import Reproductor
-from view.barra import barra_progreso
+from model.barra import barra_progreso
 
 
-r = Reproductor()
-r.agregar_cancion('Bohemian Rhapsody', 'Queen', 12)
-r.agregar_cancion('Hotel California', 'Eagles', 11)
-r.agregar_cancion('Smells Like Teen Spirit', 'Nirvana ', 14)
-r.agregar_cancion('Soy Peor', 'Bad Bunny', 10)
-r.agregar_cancion('Soy Peor', 'Bad Bunny', 10)
+reproductor = Reproductor()
+reproductor.agregar('Bohemian Rhapsody', 'Queen', 12)
+reproductor.agregar('Hotel California', 'Eagles', 11)
+reproductor.agregar('Smells Like Teen Spirit', 'Nirvana ', 14)
+reproductor.agregar('Soy Peor', 'Bad Bunny', 10)
+reproductor.agregar('Soy Peor', 'Bad Bunny', 10)
 
 # print(r.eliminar_cancion('Bohemian Rhapsody'))
 # print(r)
@@ -43,19 +43,23 @@ while opcion != 10:
             titulo = input('Ingrese el título: ')
             artista = input('Ingrese el artista: ')
             duracion = int(input('Ingrese la duración (10-15 seg): '))
-            resultado = r.agregar_cancion(titulo, artista, duracion)
+            resultado = reproductor.agregar(titulo, artista, duracion)
             print(resultado)
+        if opcion == 2:
+            print('')
+            reproductor.avanzar()
         if opcion == 4:
             print('')
             print('❌ Eliminar una Canción')
             titulo = input('Ingrese el título de la canción a eliminar: ')
-            resultado = r.eliminar_cancion(titulo)
+            resultado = reproductor.eliminar(titulo)
             print(resultado)
         if opcion == 5:
             print('')
-            cancion_actual = r.reproducir()
+            cancion_actual = reproductor.reproducir()
             print(cancion_actual)
-            barra_progreso(100, cancion_actual.duracion)
+            #barra_progreso(100, cancion_actual.duracion)
+            barra_progreso(100, 1)
         if opcion == 6:
             print('')
-            print(r)
+            print(reproductor)
