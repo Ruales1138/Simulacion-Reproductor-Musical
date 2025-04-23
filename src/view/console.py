@@ -45,7 +45,11 @@ while opcion != 10:
             resultado = r.agregar_cancion(titulo, artista, duracion)
             print(resultado)
         if opcion == 4:
-            pass
+            print('')
+            print('❌ Eliminar una Canción')
+            titulo = input('Ingrese el título de la canción a eliminar: ')
+            resultado = r.eliminar_cancion(titulo)
+            print(resultado)
         if opcion == 6:
             print('')
             print(r)

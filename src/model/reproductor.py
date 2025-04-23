@@ -75,9 +75,9 @@ class DoubleLinkedList:
                 if next_node is not None:
                     next_node.prev = prev_node
                 self.__size -= 1
-                return 'Cancion eliminada'
+                return True
             current_node = current_node.next
-        return 'Cancion no encotrada'
+        return False
 
     def return_firs(self):
         return self.__head.value
@@ -129,14 +129,18 @@ class Reproductor:
         
     def agregar_cancion(self, titulo: str, artista: str, duracion: int):
         if self.playlist.search(titulo) == True:
-            return '❌ Cancion repetida'
+            return '🚫 Cancion repetida'
         else:
             cancion = Cancion(titulo, artista, duracion)
             self.playlist.enqueue(cancion)
             return '✅ Canción agregada exitosamente. '
 
     def eliminar_cancion(self, titulo: str):
-        return self.playlist.dequeue_by_name(titulo)
+        resultado = self.playlist.dequeue_by_name(titulo)
+        if resultado == True:
+            return '✅ Canción eliminada exitosamente.'
+        else:
+            return '🚫 No se encontro la cancion'
 
     def __repr__(self):
         return str(self.playlist)
