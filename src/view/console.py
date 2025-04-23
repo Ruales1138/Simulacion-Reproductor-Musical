@@ -1,6 +1,7 @@
 import sys
 sys.path.append('src')
 from model.reproductor import Reproductor
+from view.barra import barra_progreso
 
 
 r = Reproductor()
@@ -50,6 +51,11 @@ while opcion != 10:
             titulo = input('Ingrese el título de la canción a eliminar: ')
             resultado = r.eliminar_cancion(titulo)
             print(resultado)
+        if opcion == 5:
+            print('')
+            cancion_actual = r.reproducir()
+            print(cancion_actual)
+            barra_progreso(100, cancion_actual.duracion)
         if opcion == 6:
             print('')
             print(r)

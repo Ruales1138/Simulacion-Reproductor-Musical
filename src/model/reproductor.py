@@ -80,7 +80,7 @@ class DoubleLinkedList:
         return False
 
     def return_firs(self):
-        return self.__head.value
+        return self.__head
     
     def search(self, value: str):
         current_node = self.__head
@@ -102,30 +102,31 @@ class DoubleLinkedList:
 
 class Queue:
     def __init__(self):
-        self.queue = DoubleLinkedList()
+        self.__queue = DoubleLinkedList()
 
     def enqueue(self, value):
-        self.queue.append(value)
+        self.__queue.append(value)
 
     def dequeue(self):
-        self.queue.delete_first()
+        self.__queue.delete_first()
 
     def dequeue_by_name(self, value):
-        return self.queue.delete_by_name(value)
+        return self.__queue.delete_by_name(value)
 
     def first(self):
-        return self.queue.return_firs()
+        return self.__queue.return_firs()
     
     def search(self, value):
-        return self.queue.search(value)
+        return self.__queue.search(value)
     
     def __repr__(self):
-        return str(self.queue)
+        return str(self.__queue)
     
 
 class Reproductor:
     def __init__(self):
         self.playlist = Queue()
+        self.cancion_actual = None
         
     def agregar_cancion(self, titulo: str, artista: str, duracion: int):
         if self.playlist.search(titulo) == True:
@@ -141,6 +142,10 @@ class Reproductor:
             return '✅ Canción eliminada exitosamente.'
         else:
             return '🚫 No se encontro la cancion'
+        
+    def reproducir(self):
+        self.cancion_actual = self.playlist.first()
+        return self.cancion_actual.value
 
     def __repr__(self):
         return str(self.playlist)
