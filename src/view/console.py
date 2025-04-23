@@ -69,10 +69,11 @@ while opcion != 10:
                 #barra_progreso(100, cancion_actual.duracion)
                 barra_progreso(100, 2)
                 reproductor.avanzar()
-                respuesta = input('Enter: ')
-                if respuesta != '':
+                print('')
+                respuesta = input('Enter para seguir reproduciendo o "s" para salir: ')
+                if respuesta == 's':
                     break
-                print("\033[F\033[F\033[F\033[F\033[F", end="")
+                print("\033[F\033[F\033[F\033[F\033[F\033[F", end="")
         if opcion == 6:
             print('')
             print(reproductor)
