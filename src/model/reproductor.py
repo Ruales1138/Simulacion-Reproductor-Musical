@@ -1,3 +1,5 @@
+import random
+
 class Cancion:
     def __init__(self, titulo: str, artista: str, duracion: int):
         self.titulo: str = titulo
@@ -92,6 +94,9 @@ class DoubleLinkedList:
     
     def return_last(self):
         return self.__tail
+    
+    def return_size(self):
+        return self.__size
 
     def __repr__(self):
         string = ''
@@ -122,6 +127,9 @@ class Queue:
     def last(self):
         return self.__queue.return_last()
     
+    def size(self):
+        return self.__queue.return_size()
+    
     def search(self, value):
         return self.__queue.search(value)
     
@@ -143,6 +151,13 @@ class Reproductor:
             self.playlist.enqueue(cancion)
             return '✅ Canción agregada exitosamente. '
         
+    def eliminar(self, titulo: str):
+        resultado = self.playlist.dequeue_by_name(titulo)
+        if resultado == True:
+            return '✅ Canción eliminada exitosamente.'
+        else:
+            return '🚫 No se encontro la cancion'
+        
     def avanzar(self):
         if self.cancion_actual is not None:
             self.cancion_actual = self.cancion_actual.next
@@ -154,6 +169,19 @@ class Reproductor:
         else:
             self.cancion_actual = self.playlist.first().next
             return f'Siguiente cancion: {self.cancion_actual}'
+    
+    def avanzar_aleatorio(self):
+        cantidad_de_canciones = self.playlist.size()
+        if cantidad_de_canciones == 1:
+            titulo = self.cancion_actual.value.titulo
+            self.eliminar(titulo)
+            return True
+        if cantidad_de_canciones > 1:
+            numero_aleatorio = random.randint(1, cantidad_de_canciones-1)
+            titulo = self.cancion_actual.value.titulo
+            for i in range(numero_aleatorio):
+                self.avanzar()
+            self.eliminar(titulo)
 
     def retroceder(self):
         if self.cancion_actual is not None:
@@ -166,14 +194,6 @@ class Reproductor:
         else:
             self.cancion_actual = self.playlist.last()
             return f'Anterior cancion: {self.cancion_actual}'
-        
-
-    def eliminar(self, titulo: str):
-        resultado = self.playlist.dequeue_by_name(titulo)
-        if resultado == True:
-            return '✅ Canción eliminada exitosamente.'
-        else:
-            return '🚫 No se encontro la cancion'
         
     def reproducir(self):
         if self.cancion_actual is None:
@@ -196,6 +216,9 @@ class Reproductor:
         copia = self.playlist
         self.playlist = self.subplaylist
         self.subplaylist = copia
+
+    def tamaño(self):
+        return self.playlist.size()
 
     def __repr__(self):
         return str(self.playlist)

@@ -1,4 +1,3 @@
-import random
 import sys
 sys.path.append('src')
 from model.reproductor import Reproductor
@@ -74,9 +73,9 @@ class Console:
                         if self.aleatorio is False:
                             self.reproductor.avanzar()
                         else:
-                            numero = random.randint(1, 10)
-                            for i in range(numero):
-                                self.reproductor.avanzar()
+                            resultado = self.reproductor.avanzar_aleatorio()
+                            if resultado is True:
+                                break
                         print('')
                         respuesta = input('Enter para seguir reproduciendo o "s" para salir: ')
                         if respuesta == 's':
