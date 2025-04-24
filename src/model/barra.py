@@ -1,39 +1,35 @@
-import time   # Módulo para trabajar con tiempo (pausas, medir duración, etc.)
-import sys    # Módulo para escribir directamente en la consola sin saltos de línea
+import time
+import sys
 
-def barra_progreso(total, tiempo_total):
-    # Calculamos cuánto debe durar cada iteración para que la barra tome el tiempo total
+def barra_progreso(total, tiempo_total, inicio_en=0.0):
+    if not 0.0 <= inicio_en <= 1.0:
+        raise ValueError("El parámetro 'inicio_en' debe estar entre 0.0 y 1.0")
+
     tiempo_por_iteracion = tiempo_total / total
-
-    # Guardamos el tiempo en que comienza la ejecución de la barra
     inicio = time.time()
 
-    # Bucle que va desde 0 hasta 'total', para simular el avance
-    for i in range(total + 1):
-        # Calculamos cuántos segundos han pasado desde que empezó
-        tiempo_actual = int(time.time() - inicio)  # Solo segundos enteros
+    # Calculamos el punto de inicio en pasos
+    inicio_contador = int(total * inicio_en)
+    pasos_restantes = total - inicio_contador
 
-        # Formateamos el tiempo transcurrido y el total como "Xs" (ej. 3s, 5s)
+    for i in range(pasos_restantes + 1):
+        tiempo_actual = int(time.time() - inicio)
         tiempo_actual_fmt = f"{tiempo_actual:2d}s"
         tiempo_total_fmt = f"{int(tiempo_total):2d}s"
 
-        # Calculamos cuántos caracteres de la barra deben estar llenos
-        # 50 es el ancho total de la barra visual
-        barra = '#' * int((i / total) * 50) + '-' * (50 - int((i / total) * 50))
+        # Total de pasos completados desde el inicio de la barra (inicial ya llenos + los nuevos)
+        completados = inicio_contador + i
+        progreso = completados / total
 
-        # Construimos la línea para mostrar: tiempo transcurrido | barra | tiempo total
-        # '\r' hace que se sobreescriba la línea anterior (sin saltos)
+        # Generamos la barra visual
+        barra = '#' * int(progreso * 50) + '-' * (50 - int(progreso * 50))
+
         sys.stdout.write(f'\r{tiempo_actual_fmt} |[{barra}]| {tiempo_total_fmt}')
-        sys.stdout.flush()  # Forzamos a que se actualice en pantalla
+        sys.stdout.flush()
 
-        # Esperamos el tiempo correspondiente antes de pasar al siguiente paso
         time.sleep(tiempo_por_iteracion)
 
-    # Al final, hacemos un salto de línea para que el prompt quede bien posicionado
     print()
 
-# Llamamos a la función con 100 pasos y duración total de 5 segundos
-# barra_progreso(100, 5)
-
-
-
+# Ejemplo: empieza con la barra ya a la mitad
+#barra_progreso(100, 5, 0.5)

@@ -9,6 +9,7 @@ class Console:
         self.reproductor = Reproductor()
         self.opcion: int = 0
         self.aleatorio: bool = False
+        self.porcentaje_adelantado: int = 0
 
     def crear_datos(self):
         self.reproductor.agregar('Bohemian Rhapsody', 'Queen', 12)
@@ -40,6 +41,7 @@ class Console:
                 self.opcion = 0
             else:
                 self.opcion = int(self.opcion)
+
                 if self.opcion == 1:
                     print('')
                     print('➕ Agregar una Canción')
@@ -48,28 +50,33 @@ class Console:
                     duracion = int(input('Ingrese la duración (10-15 seg): '))
                     resultado = self.reproductor.agregar(titulo, artista, duracion)
                     print(resultado)
+
                 if self.opcion == 2:
                     print('')
                     resultado = self.reproductor.avanzar()
                     print(resultado)
+
                 if self.opcion == 3:
                     print('')
                     resultado = self.reproductor.retroceder()
                     print(resultado)
+
                 if self.opcion == 4:
                     print('')
                     print('❌ Eliminar una Canción')
                     titulo = input('Ingrese el título de la canción a eliminar: ')
                     resultado = self.reproductor.eliminar(titulo)
                     print(resultado)
+
                 if self.opcion == 5:
                     while True:
                         print('')
                         cancion_actual = self.reproductor.reproducir()
                         print('🎵 Ahora reproduciendo:')
                         print(f'{cancion_actual}                   ')
-                        #barra_progreso(100, cancion_actual.duracion)
-                        barra_progreso(100, 2)
+                        #barra_progreso(100, 1, self.porcentaje_adelantado)
+                        barra_progreso(100, cancion_actual.duracion, self.porcentaje_adelantado)
+                        self.porcentaje_adelantado = 0
                         if self.aleatorio is False:
                             self.reproductor.avanzar()
                         else:
@@ -81,9 +88,11 @@ class Console:
                         if respuesta == 's':
                             break
                         print("\033[F\033[F\033[F\033[F\033[F\033[F", end="")
+
                 if self.opcion == 6:
                     print('')
                     print(self.reproductor)
+
                 if self.opcion == 7:
                     if self.aleatorio is False:
                         self.aleatorio = True
@@ -93,8 +102,20 @@ class Console:
                         self.aleatorio = False
                         print('')
                         print('🔀 Modo aleatorio desactivado. ')
+
                 if self.opcion == 8:
-                    pass
+                    cancion_actual = self.reproductor.reproducir()
+                    print('')
+                    respuesta = int(input('⏩ Ingrese el porcentaje de adelanto: '))
+                    porcentaje = respuesta / 100
+                    if porcentaje > 1:
+                        self.reproductor.avanzar()
+                        cancion_actual = self.reproductor.reproducir()
+                        print(f'Avanzando a la siguiente cancion: {cancion_actual.titulo}')
+                    else:
+                        self.porcentaje_adelantado = porcentaje
+                        print(f'⌛ Adelantando {int(cancion_actual.duracion * porcentaje)}s... de {cancion_actual.titulo}')
+
                 if self.opcion == 9:
                     print('')
                     print('📑 Generar una Subplaylist')
