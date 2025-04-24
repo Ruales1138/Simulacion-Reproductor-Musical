@@ -66,6 +66,7 @@ class DoubleLinkedList:
         current_node = self.__head
         while current_node is not None:
             if (current_node.value.titulo).lower() == value.lower():
+                deleted_node = current_node.value
                 prev_node = current_node.prev
                 next_node = current_node.next
                 if current_node == self.__head:
@@ -77,7 +78,7 @@ class DoubleLinkedList:
                 if next_node is not None:
                     next_node.prev = prev_node
                 self.__size -= 1
-                return True
+                return deleted_node
             current_node = current_node.next
         return False
     
@@ -141,6 +142,7 @@ class Reproductor:
     def __init__(self):
         self.playlist = Queue()
         self.subplaylist = Queue()
+        self.aux_playlist = Queue()
         self.cancion_actual = None
         
     def agregar(self, titulo: str, artista: str, duracion: int):
@@ -153,7 +155,7 @@ class Reproductor:
         
     def eliminar(self, titulo: str):
         resultado = self.playlist.dequeue_by_name(titulo)
-        if resultado == True:
+        if resultado is not False:
             return '✅ Canción eliminada exitosamente.'
         else:
             return '🚫 No se encontro la cancion'
@@ -174,14 +176,19 @@ class Reproductor:
         cantidad_de_canciones = self.playlist.size()
         if cantidad_de_canciones == 1:
             titulo = self.cancion_actual.value.titulo
-            self.eliminar(titulo)
+            cancion_eliminada = self.playlist.dequeue_by_name(titulo)
+            cancion = Cancion(cancion_eliminada.titulo, cancion_eliminada.artista, cancion_eliminada.duracion)
+            self.aux_playlist.enqueue(cancion)
+            self.playlist = self.aux_playlist
             return True
         if cantidad_de_canciones > 1:
             numero_aleatorio = random.randint(1, cantidad_de_canciones-1)
             titulo = self.cancion_actual.value.titulo
             for i in range(numero_aleatorio):
                 self.avanzar()
-            self.eliminar(titulo)
+            cancion_eliminada = self.playlist.dequeue_by_name(titulo)
+            cancion = Cancion(cancion_eliminada.titulo, cancion_eliminada.artista, cancion_eliminada.duracion)
+            self.aux_playlist.enqueue(cancion)
 
     def retroceder(self):
         if self.cancion_actual is not None:
