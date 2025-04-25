@@ -90,6 +90,15 @@ class DoubleLinkedList:
             current_node = current_node.next
         return False
     
+    def search_by_artist(self, name: str):
+        current_node = self.__head
+        count = 0
+        while current_node is not None:
+            if (current_node.value.artista).lower() == name.lower():
+                count += 1
+            current_node = current_node.next
+        return count
+    
     def return_firs(self):
         return self.__head
     
@@ -134,6 +143,9 @@ class Queue:
     def search(self, value):
         return self.__queue.search(value)
     
+    def search_by_artist(self, name):
+        return self.__queue.search_by_artist(name)
+    
     def __repr__(self):
         return str(self.__queue)
     
@@ -144,13 +156,22 @@ class Reproductor:
         self.subplaylist = Queue()
         self.aux_playlist = Queue()
         self.cancion_actual = None
+        self.artists = {}
         
     def agregar(self, titulo: str, artista: str, duracion: int):
         if self.playlist.search(titulo) is not False:
             return '🚫 Cancion repetida'
         else:
+            if self.playlist.search_by_artist(artista) == 0:
+                self.artists[artista] = 1
+            else:
+                num = self.artists[artista]
+                num += 1
+                self.artists[artista] = num
+
             cancion = Cancion(titulo, artista, duracion)
             self.playlist.enqueue(cancion)
+            print(self.artists)
             return '✅ Canción agregada exitosamente. '
         
     def eliminar(self, titulo: str):
@@ -223,6 +244,17 @@ class Reproductor:
         copia = self.playlist
         self.playlist = self.subplaylist
         self.subplaylist = copia
+
+    def borrar_artista(self):
+        artista_menor = ''
+        numero_menor = 100
+        for clave, valor in self.artists.items():
+            print(clave)
+            print(valor)
+            if valor < numero_menor:
+                numero_menor = valor
+                artista_menor = clave
+        return artista_menor
 
     def tamaño(self):
         return self.playlist.size()

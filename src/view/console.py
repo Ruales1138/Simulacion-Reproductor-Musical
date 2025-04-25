@@ -13,10 +13,13 @@ class Console:
 
     def crear_datos(self):
         self.reproductor.agregar('Bohemian Rhapsody', 'Queen', 12)
+        self.reproductor.agregar('Another One Bites The Dust', 'Queen', 12)
         self.reproductor.agregar('Hotel California', 'Eagles', 11)
         self.reproductor.agregar('Smells Like Teen Spirit', 'Nirvana ', 14)
+        self.reproductor.agregar('Something In The Way', 'Nirvana ', 14)
         self.reproductor.agregar('Soy Peor', 'Bad Bunny', 10)
-        self.reproductor.agregar('Dame tu cosita', 'El Chombo', 15)
+        self.reproductor.agregar('Moscow Mule', 'Bad Bunny', 10)
+        #self.reproductor.agregar('Dame tu cosita', 'El Chombo', 15)
 
     def imprimir(self):
         self.crear_datos()
@@ -35,6 +38,7 @@ class Console:
             print('8️⃣  Adelantar una canción')
             print('9️⃣  Generar una subplaylist')
             print('🔟 Salir')
+            print('11 Borrar artista con menos reproducciones')
             print('--------------------------------------------')
             self.opcion = input('Seleccione una opción: ')
             if self.opcion == '':
@@ -125,6 +129,12 @@ class Console:
                     respuesta = input('1️⃣  Quiere reproducir esta nueva subplaylist? (si, no): ')
                     if respuesta == 'si':
                         self.reproductor.cambiar_playlist()
+
+                if self.opcion == 11:
+                    print('')
+                    respuesta = self.reproductor.borrar_artista()
+                    print(respuesta)
+
                 
 c = Console()
 c.imprimir()
