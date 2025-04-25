@@ -93,11 +93,13 @@ class DoubleLinkedList:
     def search_by_artist(self, name: str):
         current_node = self.__head
         count = 0
+        songs = []
         while current_node is not None:
             if (current_node.value.artista).lower() == name.lower():
                 count += 1
+                songs.append(current_node.value.titulo)
             current_node = current_node.next
-        return count
+        return count, songs
     
     def return_firs(self):
         return self.__head
@@ -162,7 +164,8 @@ class Reproductor:
         if self.playlist.search(titulo) is not False:
             return '🚫 Cancion repetida'
         else:
-            if self.playlist.search_by_artist(artista) == 0:
+            count, songs = self.playlist.search_by_artist(artista)
+            if count == 0:
                 self.artists[artista] = 1
             else:
                 num = self.artists[artista]
@@ -249,12 +252,13 @@ class Reproductor:
         artista_menor = ''
         numero_menor = 100
         for clave, valor in self.artists.items():
-            print(clave)
-            print(valor)
             if valor < numero_menor:
                 numero_menor = valor
                 artista_menor = clave
-        return artista_menor
+        count, songs = self.playlist.search_by_artist(artista_menor)
+        for titulo in songs:
+            self.eliminar(titulo)
+        return artista_menor, songs
 
     def tamaño(self):
         return self.playlist.size()

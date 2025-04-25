@@ -19,7 +19,8 @@ class Console:
         self.reproductor.agregar('Something In The Way', 'Nirvana ', 14)
         self.reproductor.agregar('Soy Peor', 'Bad Bunny', 10)
         self.reproductor.agregar('Moscow Mule', 'Bad Bunny', 10)
-        #self.reproductor.agregar('Dame tu cosita', 'El Chombo', 15)
+        self.reproductor.agregar('Dos mil dieciseis', 'Bad Bunny', 10)
+        self.reproductor.agregar('Dame tu cosita', 'El Chombo', 15)
 
     def imprimir(self):
         self.crear_datos()
@@ -132,8 +133,8 @@ class Console:
 
                 if self.opcion == 11:
                     print('')
-                    respuesta = self.reproductor.borrar_artista()
-                    print(respuesta)
+                    artista_menor, songs = self.reproductor.borrar_artista()
+                    print(f'{artista_menor}: {songs}')
 
                 
 c = Console()
