@@ -180,6 +180,9 @@ class Reproductor:
     def eliminar(self, titulo: str):
         resultado = self.playlist.dequeue_by_name(titulo)
         if resultado is not False:
+            num = self.artists[resultado.artista]
+            num -= 1
+            self.artists[resultado.artista] = num
             return '✅ Canción eliminada exitosamente.'
         else:
             return '🚫 No se encontro la cancion'

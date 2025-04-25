@@ -20,7 +20,7 @@ class Console:
         self.reproductor.agregar('Soy Peor', 'Bad Bunny', 10)
         self.reproductor.agregar('Moscow Mule', 'Bad Bunny', 10)
         self.reproductor.agregar('Dos mil dieciseis', 'Bad Bunny', 10)
-        self.reproductor.agregar('Dame tu cosita', 'El Chombo', 15)
+        #self.reproductor.agregar('Dame tu cosita', 'El Chombo', 15)
 
     def imprimir(self):
         self.crear_datos()
