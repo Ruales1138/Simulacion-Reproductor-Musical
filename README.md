@@ -53,10 +53,10 @@ Se otorgarán puntos adicionales a los estudiantes que usen buenas prácticas de
 - Luego de ser creada, el sistema debe proponer la opción de reproducir y trabajar con la subplaylist creada. Si el usuario elige esta opción, el programa funcionará exactamente igual que como el original pero ahora sobre la subplaylist creada.
 # 📌 Evaluación y Bonificación Extra
 ### Criterio
-- Implementación funcional de todas las características 40%
-- Sustentación 60%
+- Implementación funcional de todas las características: 40%
+- Sustentación: 60%
 - Buenas prácticas de programación: +10 %
-- Estética e interactividad de la consola +10 %
+- Estética e interactividad de la consola: +10 %
 # 🟢 Bonificación Extra (20 pts)
 Se otorgarán puntos adicionales si la solución está bien estructurada y la interfaz de consola es intuitiva, interactiva y bien organizada. Algunas ideas para mejorar la estética:
 - Menús bien estructurados con opciones numeradas.
