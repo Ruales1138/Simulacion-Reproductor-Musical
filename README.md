@@ -34,6 +34,36 @@ Se otorgarán puntos adicionales a los estudiantes que usen buenas prácticas de
 - Se debe permitir eliminar una canción por su título.
 - Si la canción eliminada estaba en reproducción, se debe reproducir la siguiente automáticamente.
 - Si solo queda una canción y se elimina, la lista debe quedar vacía.
+### ✅ Mostrar la canción en reproducción
+- Mostrar en pantalla el título, artista y duración de la canción que se está reproduciendo.
+### ✅ Mostrar toda la playlist
+- Listar todas las canciones de la playlist en el orden en que se encuentran en la lista.
+### ✅ Reproducir en orden aleatorio (shuffle mode)
+- Se debe permitir activar un modo aleatorio donde las canciones se reproduzcan en orden aleatorio sin repetir hasta que todas se reproduzcan.
+### ✅ Adelantar la canción un % específico
+- El usuario puede ingresar un porcentaje (10%, 20%, 50%, etc.) para adelantar la canción.
+- Si el tiempo adelantado supera la duración de la canción, debe pasar a la siguiente automáticamente.
+### ✅ Simulación del tiempo de reproducción
+- Cada canción debe reproducirse por su duración real (entre 5 y 10 segundos).
+- Mientras se reproduce, el sistema debe mostrar el tiempo transcurrido.
+- Cuando termine la canción, debe pasar automáticamente a la siguiente.
+### ✅ Generar una subplaylist
+- Permitir al usuario seleccionar un subconjunto de canciones y generar una nueva playlist con ellas.
+- La subplaylist debe ser independiente y funcionar igual que la playlist original.
+- Luego de ser creada, el sistema debe proponer la opción de reproducir y trabajar con la subplaylist creada. Si el usuario elige esta opción, el programa funcionará exactamente igual que como el original pero ahora sobre la subplaylist creada.
+# 📌 Evaluación y Bonificación Extra
+### Criterio
+- Implementación funcional de todas las características 40%
+- Sustentación 60%
+- Buenas prácticas de programación: +10 %
+- Estética e interactividad de la consola +10 %
+# 🟢 Bonificación Extra (20 pts)
+Se otorgarán puntos adicionales si la solución está bien estructurada y la interfaz de consola es intuitiva, interactiva y bien organizada. Algunas ideas para mejorar la estética:
+- Menús bien estructurados con opciones numeradas.
+- Mensajes claros y visualmente diferenciados (por ejemplo, colores o símbolos ASCII 🎵).
+- Animaciones sencillas (por ejemplo, mostrar que la canción se está reproduciendo con una barra de progreso).
+- Indicadores visuales de la canción actual en la playlist.
+
 
 
 
